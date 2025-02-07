@@ -1,13 +1,20 @@
+
 <html>
     <head>
         <title>Valentine's Day Proposal</title>
         <style>
+            html, body {
+                height: 100%; /* Ensures the background covers the full screen */
+                margin: 0;
+                overflow: hidden; /* Prevent scrollbars */
+            }
             body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 background: linear-gradient(to top, rgb(103, 216, 254), rgb(250, 250, 250));
                 color: black;
-                text-align: center;
-                margin: 0;
-                overflow: hidden; /* Prevent scrollbars during confetti animation */
                 font-family: trebuchet ms;
             }
             h1 {
@@ -39,6 +46,7 @@
                 font-weight: bold;
                 color: #ff477e;
                 margin-top: 20px;
+                text-align: center;
             }
             .confetti {
                 position: absolute;
@@ -58,15 +66,10 @@
         </style>
     </head>
     <body>
-        <div>
-            <br />
-            <br />
-            <h1>Will you be my Valentine?</h1>
-            <br />
-            <button id="yesButton">Yes</button>
-            <button id="no">No</button>
-            <div id="message">Yayyyy! Shall we schedule 14 March when you are back? 💖</div>
-        </div>
+        <h1>Will you be my Valentine?</h1>
+        <button id="yesButton">Yes</button>
+        <button id="no">No</button>
+        <div id="message">Yayyyy! Shall we schedule 14 March when you are back? 💖</div>
         <script>
             var currentIndex = 0;
 
@@ -119,22 +122,29 @@
             no.addEventListener("click", change);
 
             function change() {
-                // Get the current text and update the button
-                var randomText = noTexts[currentIndex];
-                no.innerText = randomText;
-
-                // Increment the index and wrap around if at the end of the array
-                currentIndex = (currentIndex + 1) % noTexts.length;
+                // Check if the texts in the array are exhausted
+                if (currentIndex < noTexts.length) {
+                    no.innerText = noTexts[currentIndex];
+                    currentIndex++;
+                } else {
+                    // Remove both buttons after all texts are exhausted
+                    no.style.display = "none";
+                    yesButton.style.display = "none";
+                    message.style.display = "block"; // Show the message
+                    message.innerText = "You have officially exhausted all 'No' texts. 😭"; // Change the final message
+                }
 
                 // Adjust button size to fit the text
                 no.style.width = "auto";
                 no.style.height = "auto";
 
                 // Randomly reposition the "No" button
-                var i = Math.floor(Math.random() * (window.innerWidth - no.offsetWidth));
-                var j = Math.floor(Math.random() * (window.innerHeight - no.offsetHeight));
-                no.style.left = i + "px";
-                no.style.top = j + "px";
+                if (currentIndex < noTexts.length) {
+                    var i = Math.floor(Math.random() * (window.innerWidth - no.offsetWidth));
+                    var j = Math.floor(Math.random() * (window.innerHeight - no.offsetHeight));
+                    no.style.left = i + "px";
+                    no.style.top = j + "px";
+                }
             }
 
             // Function to start the confetti effect
