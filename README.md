@@ -1,58 +1,73 @@
 <html>
     <head>
         <title>Valentine's Day Proposal</title>
+        <style>
+            body {
+                background: linear-gradient(to top, rgb(103, 216, 254), rgb(250, 250, 250));
+                color: black;
+                text-align: center;
+                margin: 0;
+                overflow: hidden; /* Prevent scrollbars during confetti animation */
+                font-family: trebuchet ms;
+            }
+            h1 {
+                color: #ff477e;
+            }
+            #yesButton, #no {
+                color: black;
+                padding: 10px 20px;
+                font-size: 20px;
+                background-color: rgb(247, 44, 91);
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: transform 0.3s, width 0.3s, height 0.3s;
+                white-space: nowrap;
+            }
+            #yesButton {
+                background-color: rgb(64, 248, 64);
+                margin-right: 10px;
+            }
+            #no {
+                position: absolute;
+                background-color: rgb(247, 44, 91);
+                margin-left: 10px;
+            }
+            #message {
+                display: none;
+                font-size: 30px;
+                font-weight: bold;
+                color: #ff477e;
+                margin-top: 20px;
+            }
+            .confetti {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background-color: #ff477e;
+                animation: fall linear infinite;
+            }
+            @keyframes fall {
+                0% {
+                    transform: translateY(-100vh);
+                }
+                100% {
+                    transform: translateY(100vh);
+                }
+            }
+        </style>
     </head>
     <body>
         <div>
             <br />
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
             <h1>Will you be my Valentine?</h1>
-            <br />
-            <br />
             <br />
             <button id="yesButton">Yes</button>
             <button id="no">No</button>
+            <div id="message">Yayyyy! Shall we schedule 14 March when you are back? 💖</div>
         </div>
-        <style>
-            body {
-                background: linear-gradient(to top, rgb(103, 216, 254), rgb(250, 250, 250));
-                color: black; /* Default text color */
-            }
-            div {
-                text-align: center;
-                vertical-align: middle;
-            }
-            h1 {
-                color: #ff477e; /* Keep pink color for the headline */
-            }
-            #yesButton, #no {
-                color: black; /* Black text for buttons */
-                padding: 10px 20px; /* Adjust padding for better spacing */
-                font-family: trebuchet ms;
-                font-size: 20px; /* Default font size */
-                background-color: rgb(247, 44, 91); /* Default background */
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: transform 0.3s, width 0.3s, height 0.3s;
-                white-space: nowrap; /* Prevent text wrapping */
-            }
-            #yesButton {
-                background-color: rgb(64, 248, 64); /* Green for Yes button */
-                margin-right: 10px;
-            }
-            #no {
-                position: absolute;
-                background-color: rgb(247, 44, 91); /* Red for No button */
-                margin-left: 10px;
-            }
-        </style>
         <script>
-            // Add an index to track the current position in the noTexts array
             var currentIndex = 0;
 
             var noTexts = [
@@ -92,13 +107,13 @@
 
             var yesButton = document.getElementById("yesButton");
             var no = document.getElementById("no");
+            var message = document.getElementById("message");
 
             // Event listener for the "Yes" button
-            yesButton.addEventListener("click", showAlert);
-
-            function showAlert() {
-                alert("yayyyy shall we schedule 14 March when you are back? <3 <3 <3");
-            }
+            yesButton.addEventListener("click", function () {
+                message.style.display = "block"; // Show the message
+                startConfetti(); // Trigger the confetti effect
+            });
 
             // Event listener for the "No" button
             no.addEventListener("click", change);
@@ -120,6 +135,29 @@
                 var j = Math.floor(Math.random() * (window.innerHeight - no.offsetHeight));
                 no.style.left = i + "px";
                 no.style.top = j + "px";
+            }
+
+            // Function to start the confetti effect
+            function startConfetti() {
+                for (let i = 0; i < 100; i++) {
+                    let confetti = document.createElement("div");
+                    confetti.classList.add("confetti");
+
+                    // Randomize confetti colors
+                    confetti.style.backgroundColor =
+                        ["#ff477e", "#64f840", "#ffa500", "#00d4ff"][Math.floor(Math.random() * 4)];
+
+                    // Randomize position and animation speed
+                    confetti.style.left = Math.random() * 100 + "vw";
+                    confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+                    document.body.appendChild(confetti);
+
+                    // Remove confetti after the animation ends
+                    confetti.addEventListener("animationend", function () {
+                        confetti.remove();
+                    });
+                }
             }
         </script>
     </body>
