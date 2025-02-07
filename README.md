@@ -111,9 +111,15 @@
             var yesButton = document.getElementById("yesButton");
             var no = document.getElementById("no");
             var message = document.getElementById("message");
+            var heading = document.querySelector("h1");
 
             // Event listener for the "Yes" button
             yesButton.addEventListener("click", function () {
+                // Remove everything except the message and confetti
+                yesButton.style.display = "none";
+                no.style.display = "none";
+                heading.style.display = "none";
+
                 message.style.display = "block"; // Show the message
                 startConfetti(); // Trigger the confetti effect
             });
