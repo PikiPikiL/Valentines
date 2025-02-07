@@ -12,14 +12,6 @@
             <br />
             <br />
             <h1>Will you be my Valentine?</h1>
-            <p style="font-family: trebuchet ms; color: black;">
-                <img
-                    id="valentineImage"
-                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBIVFRgWFRUYGBUaGBEYGBgYGBgYERgSGBgZGRgYGBgcIS4lHB4rHxgYJjgmKy8xNTU1GiQ7QDs0Py40NTQBDAwMEA8QHBISGjQhISE0NDQ0NDQxNDQ0NDQ0NDQ0MTQ0NDQ0NDU0NDQ0MTE0NDQ0NDQ0NDQ0NDExNDQxNP/AABEIANQA7gMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAA... (truncated for brevity)"
-                    alt="Valentine's Day Image"
-                    style="max-width: 300px; height: auto;"
-                />
-            </p>
             <br />
             <br />
             <br />
