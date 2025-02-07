@@ -66,7 +66,7 @@
         </style>
     </head>
     <body>
-        <h1>Will you be my Valentine?</h1>
+        <h1 id="heading">Will you be my Valentine?</h1>
         <button id="yesButton">Yes</button>
         <button id="no">No</button>
         <div id="message">Yayyyy! Shall we schedule 14 March when you are back? 💖</div>
@@ -111,16 +111,15 @@
             var yesButton = document.getElementById("yesButton");
             var no = document.getElementById("no");
             var message = document.getElementById("message");
-            var heading = document.querySelector("h1");
+            var heading = document.getElementById("heading");
 
             // Event listener for the "Yes" button
             yesButton.addEventListener("click", function () {
                 // Remove everything except the message and confetti
                 yesButton.style.display = "none";
                 no.style.display = "none";
-                heading.style.display = "none";
-
-                message.style.display = "block"; // Show the message
+                heading.style.display = "none"; // Remove "Will you be my Valentine?"
+                message.style.display = "block"; // Show the "Yayyyy!" message
                 startConfetti(); // Trigger the confetti effect
             });
 
@@ -136,8 +135,8 @@
                     // Remove both buttons after all texts are exhausted
                     no.style.display = "none";
                     yesButton.style.display = "none";
-                    message.style.display = "block"; // Show the message
-                    message.innerText = "You have officially exhausted all 'No' texts. 😭"; // Change the final message
+                    message.style.display = "block"; // Show the final message
+                    message.innerText = "You have officially exhausted all 'No' texts. 😭";
                 }
 
                 // Adjust button size to fit the text
